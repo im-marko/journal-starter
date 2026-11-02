@@ -17,3 +17,13 @@ def configure_logging(level: int = logging.INFO) -> None:
     logging exercise runs entry operations at INFO and DEBUG to compare output.
     Never log journal text, settings objects, or credentials.
     """
+    logging.basicConfig(level=level, format="%(levelname)s:%(name)s:%(message)s")
+    logging.getLogger().setLevel(level)
+
+    """ # Configure a StreamHandler only when the root logger has no handlers. Format messages to include the level, logger name, and message text.
+    if not logging.getLogger().hasHandlers():
+        handler = logging.StreamHandler()
+        handler.setLevel(level)
+        formatter = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
+        handler.setFormatter(formatter)
+        logging.getLogger().addHandler(handler) """
